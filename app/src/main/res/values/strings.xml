@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Arqui1P1</string>
+    <string name="Enviar">Enviar</string>
+    <string name="Borrar">Borrador</string>
+    <string name="Rojo">Rojo</string>
+    <string name="Negro">Negro</string>
+    <string name="Azul">Azul</string>
+    <string name="Galeria">Galería</string>
+    <string name="Dibujar">Dibujar</string>
+
+</resources>
