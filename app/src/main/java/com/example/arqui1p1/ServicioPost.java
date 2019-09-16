@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface ServicioPost {
 
-    String ruta_api="http://192.168.0.15:5555/prueba/";
+    String ruta_api="http://192.168.0.34:5555/prueba/";
 
 
     @POST(ruta_api)

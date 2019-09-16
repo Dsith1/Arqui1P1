@@ -55,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+
+        Button btnGaleria = (Button)findViewById(R.id.Galeria);
+        btnGaleria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,Galeria.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

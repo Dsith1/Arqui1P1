@@ -219,9 +219,10 @@ public class Lienzo extends Activity {
     public static String convertImageToStringForServer(Bitmap imageBitmap){
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         if(imageBitmap != null) {
-            imageBitmap.compress(Bitmap.CompressFormat.PNG, 60, stream);
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, 250, 250, false);
+            resizedBitmap.compress(Bitmap.CompressFormat.PNG, 1, stream);
             byte[] byteArray = stream.toByteArray();
-            return Base64.encodeToString(byteArray, Base64.DEFAULT);
+            return Base64.encodeToString(byteArray, Base64.URL_SAFE );
         }else{
             return null;
         }
