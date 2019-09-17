@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic[18]" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic[18]"
+        android:contentDescription="TODO" />
 
     <Button
         android:id="@+id/Anterior"
@@ -25,7 +26,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="41dp"
         android:layout_marginBottom="113dp"
-        android:text="Button"
+        android:text="@string/Anterior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -33,21 +34,22 @@
         tools:text="@string/Anterior" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Imprimir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="41dp"
         android:layout_marginBottom="118dp"
-        android:text="Button"
+        android:text="@string/Imprimir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Anterior"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="@string/Imprimir" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Siguiente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
@@ -56,10 +58,11 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="112dp"
-        android:text="Button"
+        android:text="@string/Siguiente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/Imprimir"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:text="@string/Siguiente" />
 </androidx.constraintlayout.widget.ConstraintLayout>

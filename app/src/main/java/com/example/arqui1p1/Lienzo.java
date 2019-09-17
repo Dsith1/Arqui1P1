@@ -222,7 +222,7 @@ public class Lienzo extends Activity {
             Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, 250, 250, false);
             resizedBitmap.compress(Bitmap.CompressFormat.PNG, 1, stream);
             byte[] byteArray = stream.toByteArray();
-            return Base64.encodeToString(byteArray, Base64.URL_SAFE );
+            return Base64.encodeToString(byteArray, Base64.NO_WRAP );
         }else{
             return null;
         }

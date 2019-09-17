@@ -9,5 +9,6 @@
     <string name="Galeria">Galería</string>
     <string name="Dibujar">Dibujar</string>
     <string name="Anterior">Anterior</string>
-
+    <string name="Imprimir">Imprimir</string>
+    <string name="Siguiente">Siguiente</string>
 </resources>
