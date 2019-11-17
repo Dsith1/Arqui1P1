@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -28,6 +31,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Galeria extends AppCompatActivity {
     int actual;
+    int max;
     String base64;
     ImageView imagen;
     @Override
@@ -39,10 +43,48 @@ public class Galeria extends AppCompatActivity {
 
         imagen =(ImageView)findViewById(R.id.imageView);
 
+        Button btnAnterior = (Button) findViewById(R.id.Anterior);
+        btnAnterior.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
 
+                                           if(actual!=1){
+                                               actual--;
+                                               Dibujar();
+                                           }else{
+                                               Toast.makeText(getApplicationContext(), "No Existe imagen anterior", Toast.LENGTH_SHORT).show();
+                                           }
 
+                                       }
+                                   }
+        );
 
+        Button btnSiguiente = (Button) findViewById(R.id.Siguiente);
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View view) {
 
+                                               if(actual<max){
+                                                   actual++;
+                                                   Dibujar();
+                                               }else{
+                                                   Toast.makeText(getApplicationContext(), "Usted se encuentra en la ultima imagen", Toast.LENGTH_SHORT).show();
+                                               }
+
+                                           }
+                                       }
+        );
+
+        Button btnimprimir = (Button) findViewById(R.id.Imprimir);
+        btnimprimir.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View view) {
+
+                                            Imprimir();
+
+                                           }
+                                       }
+        );
 
 
     }
@@ -158,8 +200,90 @@ public class Galeria extends AppCompatActivity {
 
                 imagen.setImageBitmap(decodedByte);
                 imagen.invalidate();
+                Maximo();
 
 
+
+
+
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("fail", "fail");
+                Log.d("fail",t.getMessage());
+            }
+        });
+    }
+
+    private void Maximo(){
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(IGaleria.ruta_api)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        IGaleria postApi= retrofit.create(IGaleria.class);
+
+
+        Call<String> call = postApi.maximo();
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String prueba=response.body();
+
+
+                max= Integer.parseInt(prueba.substring(6,prueba.length()-1));
+
+                Log.d("good", "goog");
+                Log.d("goog","prueba:"+prueba.substring(6,prueba.length()-1));
+
+
+
+
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("fail", "fail");
+                Log.d("fail",t.getMessage());
+            }
+        });
+    }
+
+    private void Imprimir(){
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(IGaleria.ruta_api)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+
+        IGaleria postApi= retrofit.create(IGaleria.class);
+
+
+        Call<String> call = postApi.Mostrar(String.valueOf(actual));
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String prueba=response.body();
+
+                Log.d("good", "goog");
+                Log.d("goog","muestreo");
+                Dibujar();
 
 
 
